@@ -8,6 +8,7 @@ data:
   #application
   TZ: Europe/Berlin
   server.port: "{{ .Values.service.port }}"
+  spring.config.location: "/usr/share/config/"
 
   #security
   security.authentication.enabled: "true"
@@ -31,4 +32,3 @@ data:
   management.otlp.tracing.endpoint: "http://otlp.monitoring:4318/v1/traces"
   management.tracing.sampling.probability: "1.0"
   logging.level.io.opentelemetry: "INFO"
-

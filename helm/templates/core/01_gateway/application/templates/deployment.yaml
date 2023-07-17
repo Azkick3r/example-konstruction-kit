@@ -83,11 +83,13 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/logs
               name: {{ include "application.fullname" . }}-applogs
+            - mountPath: /usr/share/config/
+              name: {{ include "application.fullname" . }}-config-files-volume
 
       volumes:
         - name: {{ include "application.fullname" . }}-applogs
           emptyDir: {}
-        - name: {{ include "application.fullname" . }}-trust-store-volume
-          secret:
-            secretName: trust-store-secret
+        - name: {{ include "application.fullname" . }}-config-files-volume
+          configMap:
+            name: {{ include "application.fullname" . }}-config-files
 

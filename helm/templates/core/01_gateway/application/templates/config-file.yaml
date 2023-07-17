@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "application.fullname" . }}-config-files
+  labels:
+    {{- include "application.labels" . | nindent 4 }}
+data:
+  application.yml: >-
+    spring:
+      cloud:
+        gateway:
+          default-filters:
+            - SaveSession
+            - TokenRelay=Bearer
+          routes:
+            - id: core_route
+              uri: http://core-application:8080
+              predicates:
+                - Path=/core/**
+              filters:
+                - RewritePath=/core/(?<path>.*), /$\{path}
+
+            - id: catalog_route
+              uri: http://catalog-application:8080
+              predicates:
+                - Path=/catalog/**
+              filters:
+                - RewritePath=/catalog/(?<path>.*), /$\{path}
