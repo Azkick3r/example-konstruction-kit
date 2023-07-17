@@ -1,0 +1,36 @@
+replicaCount: 1
+
+tenantId: 0
+ingress:
+  paths: /
+  enabled: true
+  authentication: none
+
+image:
+  repository: "goafabric/spring-cloud-gateway"
+  pullPolicy: IfNotPresent
+  pullSecrets: 
+
+podAnnotations:
+  linkerd.io/inject: enabled
+  sidecar.istio.io/inject: "true"
+
+nativeAnnotations:
+  resources:
+    requests:
+      memory: 32M
+      cpu: 250m
+
+  args: ["-Xmx32M"]
+
+readinessProbe:
+  initialDelaySeconds: 2
+#  scheme: HTTPS
+
+service:
+  type: ClusterIP
+  port: 8080
+
+
+
+
