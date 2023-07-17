@@ -28,7 +28,7 @@ readinessProbe:
 #  scheme: HTTPS
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8080
 
 
