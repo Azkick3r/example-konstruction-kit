@@ -3,12 +3,12 @@ COMMAND=$1
 PROFILE=$2
 
 function up() {
-    helm install setup ./setup
-    kubectl patch storageclass local-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
     chmod 700 get_helm.sh
     ./get_helm.sh
+
+    helm install setup ./setup
+    kubectl patch storageclass local-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
     sudo mkdir -p /data/volumes/pv1
     sudo mkdir -p /data/volumes/pv2
