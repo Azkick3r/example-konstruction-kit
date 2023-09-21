@@ -35,6 +35,7 @@ function down() {
 }
 
 function proxy() {
+    echo Doing nothing !
 }
 
 if   [ "${COMMAND}" = "init" ] ; then up;
