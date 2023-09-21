@@ -4,7 +4,7 @@ PROFILE=$2
 
 function up() {
     #helm repo add apisix https://apache.github.io/apisix-helm-chart
-    helm repo add apisix https://charts.apiseven.com  > /dev/null
+    #helm repo add apisix https://charts.apiseven.com  > /dev/null
     helm repo add bitnami https://charts.bitnami.com/bitnami  > /dev/null
     helm repo update
     # TODO using older version because of this bug: https://github.com/apache/apisix/pull/10066
