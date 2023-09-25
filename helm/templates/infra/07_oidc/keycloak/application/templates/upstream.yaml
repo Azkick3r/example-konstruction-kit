@@ -1,0 +1,9 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: ${_Values_app_name}
+spec:
+  loadbalancer:
+    type: roundrobin
+    hashOn: vars
+  scheme: https
