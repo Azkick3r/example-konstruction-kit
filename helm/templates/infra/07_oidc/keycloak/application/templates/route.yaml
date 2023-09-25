@@ -3,8 +3,6 @@ kind: ApisixRoute
 metadata:
   name: ${_Values_root_name}
   namespace: ${_Release_namespace}
-  annotations:
-    k8s.apisix.apache.org/upstream-scheme: "https"
 spec:
   http:
     - name: ${_Values_root_name}
@@ -16,7 +14,7 @@ spec:
           - /${_Values_ingress_name}/*
       backends:
           - serviceName: ${_Values_app_name}
-            servicePort: https
+            servicePort: http
       plugins:
         - name: redirect
           enable: true
