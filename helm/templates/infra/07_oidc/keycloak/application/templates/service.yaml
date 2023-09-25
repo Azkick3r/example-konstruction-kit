@@ -7,7 +7,14 @@ metadata:
     app: ${_Values_app_name}
 spec:
   ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    nodePort: 30200
   - name: https
-    port: 443
-    targetPort: https
-    protocol: TCP
+    port: 8443
+    targetPort: 8443
+    nodePort: 30201
+  selector:
+    app: ${_Values_app_name}
+  type: NodePort
