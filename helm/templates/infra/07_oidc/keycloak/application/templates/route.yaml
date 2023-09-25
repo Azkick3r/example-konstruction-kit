@@ -14,7 +14,7 @@ spec:
           - /${_Values_ingress_name}/*
       backends:
           - serviceName: ${_Values_app_name}
-            servicePort: http
+            servicePort: 8443
       plugins:
         - name: redirect
           enable: true
