@@ -15,8 +15,8 @@ spec:
       backends:
           - serviceName: ${_Values_app_name}
             servicePort: http
-      #plugins:
-      #  - name: redirect
-      #    enable: true
-      #    config:
-      #      http_to_https: true
+      plugins:
+        - name: redirect
+          enable: true
+          config:
+            http_to_https: true
