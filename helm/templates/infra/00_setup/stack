@@ -3,31 +3,8 @@ COMMAND=$1
 PROFILE=$2
 
 function up() {
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-    chmod 700 get_helm.sh
-    ./get_helm.sh
-
-    helm install setup ./setup
+    helm install setup ./setup --set nodeName=`kubectl get nodes -o 'jsonpath={.items[*].metadata.name}'`
     kubectl patch storageclass local-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-
-    sudo mkdir -p /data/volumes/pv1
-    sudo mkdir -p /data/volumes/pv2
-    sudo mkdir -p /data/volumes/pv3
-    sudo mkdir -p /data/volumes/pv4
-    sudo mkdir -p /data/volumes/pv5
-    sudo mkdir -p /data/volumes/pv6
-    sudo mkdir -p /data/volumes/pv7
-    sudo mkdir -p /data/volumes/pv8
-    sudo mkdir -p /data/volumes/pv9
-    sudo chmod 777 /data/volumes/pv1
-    sudo chmod 777 /data/volumes/pv2
-    sudo chmod 777 /data/volumes/pv3
-    sudo chmod 777 /data/volumes/pv4
-    sudo chmod 777 /data/volumes/pv5
-    sudo chmod 777 /data/volumes/pv6
-    sudo chmod 777 /data/volumes/pv7
-    sudo chmod 777 /data/volumes/pv8
-    sudo chmod 777 /data/volumes/pv9
 }
 
 function down() {
